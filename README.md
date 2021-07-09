@@ -2,9 +2,9 @@
 
 ### How to set up local development environment
 
-- Install docker for [Mac]([https://docs.docker.com/docker-for-mac/install/]) 
-- Install docker for [Windows]([https://docs.docker.com/docker-for-windows/install/])
-- Install docker for [Linux]([https://docs.docker.com/engine/install/])
+- Install docker for [Mac](https://docs.docker.com/docker-for-mac/install/) 
+- Install docker for [Windows](https://docs.docker.com/docker-for-windows/install/)
+- Install docker for [Linux](https://docs.docker.com/engine/install/)
 
 ### Run project
 - Clone project 
