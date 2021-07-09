@@ -18,7 +18,7 @@
 <script>
 
 export default {
-  name: 'rating',
+  name: 'Rating',
   data: function () {
     return {
       clicked: false

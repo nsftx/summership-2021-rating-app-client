@@ -1,17 +1,17 @@
 <template>
   <div id="app">
-    <rating />
+    <Rating />
   </div>
 </template>
 
 <script>
-import rating from './views/rating'
+import Rating from './views/rating'
 
 export default {
   mode: 'history',
   name: 'app',
   components: {
-    rating
+    Rating
   }
 }
 </script>
