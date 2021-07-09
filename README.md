@@ -1,29 +1,18 @@
-# rating-app-client
-
 ## Project setup
-```
-npm install
-```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+### How to set up local development environment
 
-### Compiles and minifies for production
-```
-npm run build
-```
+- Install docker for [Mac]([https://docs.docker.com/docker-for-mac/install/]) 
+- Install docker for [Windows]([https://docs.docker.com/docker-for-windows/install/])
+- Install docker for [Linux]([https://docs.docker.com/engine/install/])
 
-### Run your unit tests
+### Run project
+- Clone project 
+- From root directory execute:
 ```
-npm run test:unit
+docker build -t docker-projects/rating-app-client .
+docker run -it -p 8080:8080 --rm docker-projects/rating-app-client
 ```
+- Navigate to http://localhost:8080/
+- Hopefully it works :D
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
