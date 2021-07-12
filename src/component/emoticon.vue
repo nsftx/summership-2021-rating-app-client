@@ -26,7 +26,6 @@ export default {
   methods: {
     change () {
       this.$store.commit('changeUserVoted')
-      console.log('change')
       setTimeout(function () { this.$store.commit('changeUserVoted') }.bind(this), this.timeout * 1000)
     }
   }
@@ -35,6 +34,7 @@ export default {
 <style lang="scss" scoped>
 .main {
   height: 141px;
+  margin: 0 62px 62px 0;
   .left-border{
     height: 100%;
     width: 5px;

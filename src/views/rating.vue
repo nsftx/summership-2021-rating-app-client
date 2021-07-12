@@ -51,7 +51,7 @@ export default {
 <style lang="scss" scoped>
 .rating-wrapper {
    margin: 0 auto;
-   height: 100vh;
+   height: 100%;
    width: 70%;
   .like-img {
    display: block;
@@ -68,7 +68,7 @@ export default {
   }
   .emoticon-wrapper{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
   }
  .check-img{
