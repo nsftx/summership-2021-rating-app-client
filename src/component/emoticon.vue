@@ -19,8 +19,16 @@ export default {
     }
   },
   computed: {
+    timeout () {
+      return this.$store.getters.getSettings.msgTimeout
+    }
   },
   methods: {
+    change () {
+      this.$store.commit('changeUserVoted')
+      console.log('change')
+      setTimeout(function () { this.$store.commit('changeUserVoted') }.bind(this), this.timeout * 1000)
+    }
   }
 }
 </script>

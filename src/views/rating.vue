@@ -27,7 +27,6 @@ export default {
   name: 'rating',
   data: function () {
     return {
-      clicked: false
     }
   },
   components: {
@@ -37,19 +36,14 @@ export default {
     message () {
       return this.$store.getters.getSettings.thankYouMsg
     },
-    timeout () {
-      return this.$store.getters.getSettings.msgTimeout
-    },
     emoticonsArr () {
       return this.$store.getters.getEmoticonsArr
+    },
+    clicked () {
+      return this.$store.state.userVoted
     }
   },
   methods: {
-    change () {
-      this.clicked = !this.clicked
-      console.log('change')
-      setTimeout(function () { this.clicked = !this.clicked }.bind(this), this.timeout * 1000)
-    }
   }
 }
 </script>

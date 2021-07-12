@@ -16,9 +16,13 @@ export default new Vuex.Store({
       { bgColor: 'rgba(122, 122, 122,1)', imgName: 'emoticon-neutral-outline.svg' },
       { bgColor: 'rgba(255, 186, 19,1)', imgName: 'emoticon-sad-outline.svg' },
       { bgColor: 'rgba(249, 88, 90,1)', imgName: 'emoticon-angry-outline.svg' }
-    ]
+    ],
+    userVoted: false
   },
   mutations: {
+    changeUserVoted (state) {
+      state.userVoted = !state.userVoted
+    }
   },
   actions: {
   },
