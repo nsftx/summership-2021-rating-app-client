@@ -1,15 +1,17 @@
 <template>
   <div class="main"
-       v-on:click="change()">
+       v-on:click="vote()">
     <div class="left-border"
-         :style="{ 'background-color': data.bgColor }">
+         :style="{ 'background-color': data.color }">
     </div>
-      <img :src="require('../assets/'+ this.data.imgSrc)"
+      <img :src="require('../assets/'+ this.data.src)"
            alt="Emoticon"
-           :style="{ 'background-color': this.data.bgColor}">
+           :style="{ 'background-color': this.data.color}">
     </div>
 </template>
 <script>
+import axios from 'axios'
+
 export default {
   name: 'Emoticon',
   props: {
@@ -21,13 +23,20 @@ export default {
   },
   computed: {
     timeout () {
-      return this.$store.getters.getSettings.msgTimeout
+      return this.$store.getters.getSettings.timeout
     }
   },
   methods: {
-    change () {
-      this.$store.commit('changeUserVoted')
-      setTimeout(function () { this.$store.commit('changeUserVoted') }.bind(this), this.timeout * 1000)
+    vote () {
+      this.$store.commit('userVoted')
+      axios.post('http://192.168.88.250:8080/api/rating/', {
+        type: this.data.type,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Content-Type': 'application/json'
+        }
+      })
+      setTimeout(function () { this.$store.commit('userVoted') }.bind(this), this.timeout * 1000)
     }
   }
 }
