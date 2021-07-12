@@ -16,3 +16,8 @@ docker run -it -p 8080:8080 --rm docker-projects/rating-app-client
 - Navigate to http://localhost:8080/
 - Hopefully it works :D
 
+## Project plan
+
+- for client app [link]
+
+[link]: https://docs.google.com/document/d/1O-3YSnG2QlStAvaewg9r7RYsU_tpwuup2dgsG0-afds/edit?usp=sharing

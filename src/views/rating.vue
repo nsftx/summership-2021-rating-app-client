@@ -6,10 +6,9 @@
           src="../assets/positive-vote.svg">
         <p>Rate our service!</p>
         <div class="emoticon-wrapper">
-          <Emoticon v-on:click ="change()"
-                    v-bind:data="{bgColor: item.bgColor, imgSrc:item.imgName}"
-                    v-for="item in emoticonsArr"
-                    v-bind:key="item.imgName"
+          <Emoticon v-bind:data="{color: item.color, src: item.name, type: item.type}"
+                    v-for="item in emoticons"
+                    v-bind:key="item.name"
                     />
         </div>
       </div>
@@ -23,6 +22,8 @@
 
 <script>
 import Emoticon from '../component/emoticon'
+import axios from 'axios'
+
 export default {
   name: 'Rating',
   data: function () {
@@ -34,16 +35,20 @@ export default {
   },
   computed: {
     message () {
-      return this.$store.getters.getSettings.thankYouMsg
+      return this.$store.getters.getSettings.msg
     },
-    emoticonsArr () {
-      return this.$store.getters.getEmoticonsArr
+    emoticons () {
+      return this.$store.getters.getEmoticons
     },
     clicked () {
-      return this.$store.state.userVoted
+      return this.$store.state.voted
     }
   },
   methods: {
+  },
+  created () {
+    axios.get('http://192.168.88.250:8080/api/rating/settings/')
+      .then(response => this.$store.commit('setSettings', response.data))
   }
 }
 </script>
@@ -51,6 +56,7 @@ export default {
 <style lang="scss" scoped>
 .rating-wrapper {
    margin: 0 auto;
+   min-height: 100vh;
    height: 100%;
    width: 70%;
   .like-img {
