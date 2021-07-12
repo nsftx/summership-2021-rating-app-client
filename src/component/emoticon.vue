@@ -1,5 +1,6 @@
 <template>
-  <div class="main" v-on:click="change()">
+  <div class="main"
+       v-on:click="change()">
     <div class="left-border"
          :style="{ 'background-color': data.bgColor }">
     </div>
