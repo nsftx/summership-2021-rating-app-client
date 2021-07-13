@@ -11,7 +11,6 @@
 </template>
 <script>
 import axios from 'axios'
-
 export default {
   name: 'Emoticon',
   props: {
@@ -29,8 +28,8 @@ export default {
   methods: {
     vote () {
       this.$store.commit('userVoted')
-      axios.post('http://192.168.88.250:8080/api/rating/', {
-        type: this.data.type,
+      axios.post('http://192.168.88.247:8080/api/rating/', {
+        emoji_id: this.data.id,
         headers: {
           'Access-Control-Allow-Origin': '*',
           'Content-Type': 'application/json'

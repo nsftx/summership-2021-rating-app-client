@@ -7,9 +7,9 @@
           alt="thumbs-up">
         <p>Rate our service!</p>
         <div class="emoticon-wrapper">
-          <Emoticon v-bind:data="{color: item.color, src: item.name, type: item.type}"
+          <Emoticon v-bind:data="{color: item.color, src: item.image, id: item.id}"
                     v-for="item in emoticons"
-                    v-bind:key="item.name"
+                    v-bind:key="item.id"
                     />
         </div>
       </div>
@@ -48,8 +48,10 @@ export default {
   methods: {
   },
   created () {
-    axios.get('http://192.168.88.250:8080/api/rating/settings/')
+    axios.get('http://192.168.88.247:8080/api/rating/settings/')
       .then(response => this.$store.commit('setSettings', response.data))
+    axios.get('http://192.168.88.247:8080/api/emoji')
+      .then(response => this.$store.commit('setEmoticons', response.data))
   }
 }
 </script>
