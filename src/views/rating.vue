@@ -3,7 +3,8 @@
     <div class="rating-wrapper">
       <div v-if="!clicked">
         <img class="like-img"
-          src="../assets/positive-vote.svg">
+          src="../assets/positive-vote.svg"
+          alt="thumbs-up">
         <p>Rate our service!</p>
         <div class="emoticon-wrapper">
           <Emoticon v-bind:data="{color: item.color, src: item.name, type: item.type}"
@@ -41,7 +42,7 @@ export default {
       return this.$store.getters.getEmoticons
     },
     clicked () {
-      return this.$store.state.emoticons.voted
+      return this.$store.state.voted
     }
   },
   methods: {
@@ -54,6 +55,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .rating-wrapper {
    margin: 0 auto;
    min-height: 100vh;
@@ -63,14 +65,12 @@ export default {
    display: block;
    margin: 0 auto;
    margin-top: 287px;
-   width: 154px;
-   height: 157px;
   }
   p{
     color: rgba(255,255,255, 0.7);
     font-size: 32px;
     text-align: center;
-    font-family: Roboto-Regular;
+    font-family: Roboto-Regular, Helvetica;
   }
   .emoticon-wrapper{
     display: flex;
