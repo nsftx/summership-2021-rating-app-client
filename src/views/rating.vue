@@ -41,7 +41,7 @@ export default {
       return this.$store.getters.getEmoticons
     },
     clicked () {
-      return this.$store.state.voted
+      return this.$store.state.emoticons.voted
     }
   },
   methods: {
