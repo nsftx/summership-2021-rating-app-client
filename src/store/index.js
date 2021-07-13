@@ -1,20 +1,16 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import settings from './modules/settings'
-import emoticons from './modules/emoticons'
+import state from './modules/state'
+import mutations from './modules/mutations'
+import getters from './modules/getters'
+import actions from './modules/actions'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
-  getters: {
-  },
+  state,
+  mutations,
+  actions,
+  getters,
   modules: {
-    settings,
-    emoticons
   }
 })
