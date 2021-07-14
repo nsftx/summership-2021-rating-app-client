@@ -10,7 +10,7 @@
     </div>
 </template>
 <script>
-import axios from 'axios'
+import { HTTP } from '../API/axios'
 export default {
   name: 'Emoticon',
   props: {
@@ -27,14 +27,36 @@ export default {
   },
   methods: {
     vote () {
-      this.$store.commit('userVoted')
-      axios.post('http://192.168.88.247:8080/api/rating/', {
-        emoji_id: this.data.id,
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Content-Type': 'application/json'
-        }
+      // Method that is called when user votes his experience.
+      // Sending POST request and catching all errors.
+      HTTP.post('rating', {
+        emojiId: this.data.id
       })
+        .catch(function (error) {
+          if (error.response) {
+            // The request was made and the server responded with a status code
+            // that falls out of the range of 2xx
+            console.log(error.response.data)
+            console.log(error.response.status)
+            console.log(error.response.headers)
+          } else if (error.request) {
+            // The request was made but no response was received
+            // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+            // http.ClientRequest in node.js
+            console.log(error.request)
+          } else {
+            // Something happened in setting up the request that triggered an Error
+            console.log('Error', error.message)
+          }
+          console.log(error.config)
+        })
+      // Hiding message view if the message isn't set.
+      if (this.$store.state.settings.msg === null) {
+        return
+      }
+      // changing the voted variable in store that is used to switch between rating and msg view.
+      this.$store.commit('userVoted')
+      // after 5 seconds the view resets to rating.
       setTimeout(function () { this.$store.commit('userVoted') }.bind(this), this.timeout * 1000)
     }
   }
