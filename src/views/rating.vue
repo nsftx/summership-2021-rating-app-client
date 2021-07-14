@@ -15,7 +15,8 @@
       </div>
       <div v-else>
         <img class="check-img"
-          src="../assets/check.svg">
+          src="../assets/check.svg"
+          alt="checkmark">
         <p>{{this.message}}</p>
       </div>
     </div>
@@ -23,8 +24,7 @@
 
 <script>
 import Emoticon from '../component/emoticon'
-import axios from 'axios'
-
+import { HTTP } from '../API/axios'
 export default {
   name: 'Rating',
   data: function () {
@@ -48,10 +48,46 @@ export default {
   methods: {
   },
   created () {
-    axios.get('http://192.168.88.247:8080/api/rating/settings/')
+    HTTP.get('rating/settings')
       .then(response => this.$store.commit('setSettings', response.data))
-    axios.get('http://192.168.88.247:8080/api/emoji')
+      .catch(function (error) {
+        if (error.response) {
+          // The request was made and the server responded with a status code
+          // that falls out of the range of 2xx
+          console.log(error.response.data)
+          console.log(error.response.status)
+          console.log(error.response.headers)
+        } else if (error.request) {
+          // The request was made but no response was received
+          // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+          // http.ClientRequest in node.js
+          console.log(error.request)
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          console.log('Error', error.message)
+        }
+        console.log(error.config)
+      })
+    HTTP.get('emoji')
       .then(response => this.$store.commit('setEmoticons', response.data))
+      .catch(function (error) {
+        if (error.response) {
+          // The request was made and the server responded with a status code
+          // that falls out of the range of 2xx
+          console.log(error.response.data)
+          console.log(error.response.status)
+          console.log(error.response.headers)
+        } else if (error.request) {
+          // The request was made but no response was received
+          // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+          // http.ClientRequest in node.js
+          console.log(error.request)
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          console.log('Error', error.message)
+        }
+        console.log(error.config)
+      })
   }
 }
 </script>
@@ -65,8 +101,7 @@ export default {
    width: 70%;
   .like-img {
    display: block;
-   margin: 0 auto;
-   margin-top: 287px;
+   margin: 287px auto 0 auto;
   }
   p{
     color: rgba(255,255,255, 0.7);
@@ -81,8 +116,7 @@ export default {
   }
  .check-img{
    display: block;
-   margin: 0 auto;
-   margin-top: 477px;
+   margin: 477px auto 0 auto;
    width: 52px;
    height: 51px;
  }
