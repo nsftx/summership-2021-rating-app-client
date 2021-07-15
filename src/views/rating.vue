@@ -1,15 +1,15 @@
 <template>
-
     <div class="rating-wrapper">
-      <div v-if="!clicked">
+      <div v-if="!voted">
         <img class="like-img"
           src="../assets/positive-vote.svg"
           alt="thumbs-up">
         <p>Rate our service!</p>
         <div class="emoticon-wrapper">
-          <Emoticon v-bind:data="{color: item.color, src: item.image, id: item.id}"
+          <Emoticon v-bind:data="{src: item.image, color: item.color, id: item.id, timeout: settings.timeout, msg: settings.msg}"
                     v-for="item in emoticons"
                     v-bind:key="item.id"
+                    @userVoted="userVoted()"
                     />
         </div>
       </div>
@@ -17,77 +17,42 @@
         <img class="check-img"
           src="../assets/check.svg"
           alt="checkmark">
-        <p>{{this.message}}</p>
+        <p>{{this.ratingData[0].msg}}</p>
       </div>
     </div>
 </template>
 
 <script>
 import Emoticon from '../component/emoticon'
-import { HTTP } from '../API/axios'
 export default {
   name: 'Rating',
   data: function () {
     return {
+      emoticons: this.ratingData[1],
+      settings: this.ratingData[0]
     }
+  },
+  props: {
+    ratingData: Array
   },
   components: {
     Emoticon
   },
   computed: {
-    message () {
-      return this.$store.getters.getSettings.msg
-    },
-    emoticons () {
-      return this.$store.getters.getEmoticons
-    },
-    clicked () {
-      return this.$store.state.voted
+    voted () {
+      return false
     }
   },
   methods: {
+    userVoted () {
+      this.voted = !this.voted
+    }
   },
   created () {
-    HTTP.get('rating/settings')
-      .then(response => this.$store.commit('setSettings', response.data))
-      .catch(function (error) {
-        if (error.response) {
-          // The request was made and the server responded with a status code
-          // that falls out of the range of 2xx
-          console.log(error.response.data)
-          console.log(error.response.status)
-          console.log(error.response.headers)
-        } else if (error.request) {
-          // The request was made but no response was received
-          // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-          // http.ClientRequest in node.js
-          console.log(error.request)
-        } else {
-          // Something happened in setting up the request that triggered an Error
-          console.log('Error', error.message)
-        }
-        console.log(error.config)
-      })
-    HTTP.get('emoji')
-      .then(response => this.$store.commit('setEmoticons', response.data))
-      .catch(function (error) {
-        if (error.response) {
-          // The request was made and the server responded with a status code
-          // that falls out of the range of 2xx
-          console.log(error.response.data)
-          console.log(error.response.status)
-          console.log(error.response.headers)
-        } else if (error.request) {
-          // The request was made but no response was received
-          // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-          // http.ClientRequest in node.js
-          console.log(error.request)
-        } else {
-          // Something happened in setting up the request that triggered an Error
-          console.log('Error', error.message)
-        }
-        console.log(error.config)
-      })
+    console.log('Rating data: ' + this.ratingData)
+    console.log('Emoticons data: ' + this.emoticons)
+    console.log('Settings data: ' + this.settings)
+    // get settings and get emoji
   }
 }
 </script>

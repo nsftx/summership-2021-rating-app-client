@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Rating />
+    <Rating v-bind:ratingData="this.ratingData"/>
   </div>
 </template>
 
@@ -12,6 +12,48 @@ export default {
   name: 'app',
   components: {
     Rating
+  },
+  data () {
+    return {
+      ratingData: [{
+        numOfEmoticons: 5,
+        timeout: 5,
+        msg: 'Thank you for your rating.'
+      },
+      [
+        {
+          id: 1,
+          name: 'VERY_HAPPY',
+          color: 'rgb(0, 168, 107)',
+          image: 'very_happy.svg'
+        },
+        {
+          id: 2,
+          name: 'HAPPY',
+          color: 'rgb(65, 179, 233)',
+          image: 'happy.svg'
+        },
+        {
+          id: 3,
+          name: 'MEH',
+          color: 'rgb(122, 122, 122)',
+          image: 'meh.svg'
+        },
+        {
+          id: 4,
+          name: 'SAD',
+          color: 'rgb(255, 186, 19)',
+          image: 'sad.svg'
+        },
+        {
+          id: 5,
+          name: 'VERY_SAD',
+          color: 'rgb(249, 88, 90)',
+          image: 'very_sad.svg'
+        }
+      ]
+      ]
+    }
   }
 }
 </script>
