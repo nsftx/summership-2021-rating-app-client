@@ -1,58 +1,58 @@
 <template>
-    <div class="rating-wrapper">
-      <div v-if="!voted">
-        <img class="like-img"
-          src="../assets/positive-vote.svg"
-          alt="thumbs-up">
-        <p>Rate our service!</p>
-        <div class="emoticon-wrapper">
-          <Emoticon v-bind:data="{src: item.image, color: item.color, id: item.id, timeout: settings.timeout, msg: settings.msg}"
-                    v-for="item in emoticons"
-                    v-bind:key="item.id"
-                    @userVoted="userVoted()"
-                    />
-        </div>
-      </div>
-      <div v-else>
-        <img class="check-img"
-          src="../assets/check.svg"
-          alt="checkmark">
-        <p>{{this.ratingData[0].msg}}</p>
+  <div class="rating-wrapper">
+    <div v-show="!voted">
+      <img class="like-img"
+           src="../assets/positive-vote.svg"
+           alt="thumbs-up">
+      <p>Rate our service!</p>
+      <div class="emoticon-wrapper">
+        <Emoticon v-bind:data="{src: item.image, color: item.color, id: item.id, msg: settings.msg, timeout: settings.timeout}"
+                  v-for="item in emoticons"
+                  v-bind:key="item.id"
+                  @userVoted="changeVoted"
+        />
       </div>
     </div>
+    <div v-show="voted">
+      <img class="check-img"
+           src="../assets/check.svg"
+           alt="checkmark">
+      <p>{{this.settings.msg}}</p>
+    </div>
+  </div>
 </template>
-
 <script>
 import Emoticon from '../component/emoticon'
+import { bus } from '../main'
 export default {
   name: 'Rating',
   data: function () {
     return {
-      emoticons: this.ratingData[1],
-      settings: this.ratingData[0]
+      emoticons: [],
+      settings: {},
+      voted: false
     }
-  },
-  props: {
-    ratingData: Array
   },
   components: {
     Emoticon
   },
   computed: {
-    voted () {
-      return false
-    }
   },
   methods: {
-    userVoted () {
+    changeVoted () {
       this.voted = !this.voted
     }
   },
-  created () {
-    console.log('Rating data: ' + this.ratingData)
-    console.log('Emoticons data: ' + this.emoticons)
-    console.log('Settings data: ' + this.settings)
+  mounted () {
     // get settings and get emoji
+    bus.$on('settings', (data) => {
+      this.settings = data
+      console.log('event settings:', data)
+    })
+    bus.$on('emoticons', (data) => {
+      this.emoticons = data
+      console.log('event emoticons: ', data)
+    })
   }
 }
 </script>
@@ -63,10 +63,13 @@ export default {
    margin: 0 auto;
    min-height: 100vh;
    height: 100%;
-   width: 70%;
+   width: 90%;
   .like-img {
-   display: block;
-   margin: 287px auto 0 auto;
+    display: block;
+    margin: 0 auto;
+    margin-top: clamp(80px, 18%, 287px);
+    max-width: 35%;
+    height: auto;
   }
   p{
     color: rgba(255,255,255, 0.7);
@@ -81,7 +84,8 @@ export default {
   }
  .check-img{
    display: block;
-   margin: 477px auto 0 auto;
+   margin: 0 auto;
+   margin-top: clamp(40vh, 18%, 287px);
    width: 52px;
    height: 51px;
  }
