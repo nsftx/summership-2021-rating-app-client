@@ -1,17 +1,65 @@
 <template>
   <div id="app">
-    <Rating />
+    <Rating v-bind:settings="settings"
+    v-bind:emoticons="emoticons"/>
   </div>
 </template>
-
 <script>
-import Rating from './views/rating'
-
+import Rating from '../src/views/rating.vue'
 export default {
-  mode: 'history',
   name: 'app',
   components: {
     Rating
+  },
+  data () {
+    return {
+      // dummy data that will be changed for the data from the backend.
+      settings: {
+        numOfEmoticons: 5,
+        timeout: 5,
+        msg: 'Thank you for your rating.'
+      },
+      emoticons: [
+        {
+          id: 1,
+          name: 'VERY_HAPPY',
+          color: 'rgb(0, 168, 107)',
+          image: 'very_happy.svg'
+        },
+        {
+          id: 2,
+          name: 'HAPPY',
+          color: 'rgb(65, 179, 233)',
+          image: 'happy.svg'
+        },
+        {
+          id: 3,
+          name: 'MEH',
+          color: 'rgb(122, 122, 122)',
+          image: 'meh.svg'
+        },
+        {
+          id: 4,
+          name: 'SAD',
+          color: 'rgb(255, 186, 19)',
+          image: 'sad.svg'
+        },
+        {
+          id: 5,
+          name: 'VERY_SAD',
+          color: 'rgb(249, 88, 90)',
+          image: 'very_sad.svg'
+        }
+      ]
+    }
+  },
+  mounted () {
+  },
+  created () {
+    // event triggered in emoticon component that has payload with id of the emoticon user has selected and that should trigger POST request
+    this.$root.$on('post', (id) => {
+      console.log('event post: ', id)
+    })
   }
 }
 </script>
