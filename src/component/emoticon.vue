@@ -10,7 +10,6 @@
   </div>
 </template>
 <script>
-import { bus } from '../main'
 export default {
   name: 'Emoticon',
   props: {
@@ -24,13 +23,13 @@ export default {
   },
   methods: {
     vote () {
-      bus.$emit('post', { id: this.data.id })
-      // Emiting post request
+      this.$root.$emit('post', { id: this.data.id })
+      // Emmiting post request
       // Hiding message view if the message isn't set.
       if (this.data.msg === null) {
         return
       }
-      // changing the voted variable in store that is used to switch between rating and msg view.
+      // changing the voted variable that is used to switch between rating and msg view.
       this.$emit('userVoted')
       // after 5 seconds the view resets to rating.
       setTimeout(function () { this.$emit('userVoted') }.bind(this), this.data.timeout * 1000)

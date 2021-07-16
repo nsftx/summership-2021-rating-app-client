@@ -23,15 +23,16 @@
 </template>
 <script>
 import Emoticon from '../component/emoticon'
-import { bus } from '../main'
 export default {
   name: 'Rating',
   data: function () {
     return {
-      emoticons: [],
-      settings: {},
       voted: false
     }
+  },
+  props: {
+    settings: Object,
+    emoticons: Array
   },
   components: {
     Emoticon
@@ -44,15 +45,6 @@ export default {
     }
   },
   mounted () {
-    // get settings and get emoji
-    bus.$on('settings', (data) => {
-      this.settings = data
-      console.log('event settings:', data)
-    })
-    bus.$on('emoticons', (data) => {
-      this.emoticons = data
-      console.log('event emoticons: ', data)
-    })
   }
 }
 </script>

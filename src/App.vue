@@ -1,11 +1,11 @@
 <template>
   <div id="app">
-    <Rating/>
+    <Rating v-bind:settings="settings"
+    v-bind:emoticons="emoticons"/>
   </div>
 </template>
 <script>
 import Rating from '../src/views/rating.vue'
-import { bus } from './main'
 export default {
   name: 'app',
   components: {
@@ -54,15 +54,10 @@ export default {
     }
   },
   mounted () {
-    // events that are sent to rating view containing settings and emoticon array.
-    const settings = this.settings
-    bus.$emit('settings', settings)
-    const emoticons = this.emoticons
-    bus.$emit('emoticons', emoticons)
   },
   created () {
     // event triggered in emoticon component that has payload with id of the emoticon user has selected and that should trigger POST request
-    bus.$on('post', (id) => {
+    this.$root.$on('post', (id) => {
       console.log('event post: ', id)
     })
   }
