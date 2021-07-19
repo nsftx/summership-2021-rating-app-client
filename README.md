@@ -18,6 +18,13 @@ docker run -it -p 8080:8080 --rm docker-projects/rating-app-client
 
 ## Project plan
 
-- for client app [link]
+- for client app [plan]
 
-[link]: https://docs.google.com/document/d/1O-3YSnG2QlStAvaewg9r7RYsU_tpwuup2dgsG0-afds/edit?usp=sharing
+[plan]: https://docs.google.com/document/d/1O-3YSnG2QlStAvaewg9r7RYsU_tpwuup2dgsG0-afds/edit?usp=sharing
+
+## Project documentation
+
+- for client app [documentation]
+
+[documentation]: https://docs.google.com/document/d/1CybueXYo5BiqzhTG5U9wKOT_k3yE323dxa0Bbuwd2jA/edit
+
