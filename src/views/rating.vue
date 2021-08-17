@@ -60,6 +60,7 @@ export default {
     display: block;
     margin: 0 auto;
     margin-top: clamp(80px, 18%, 287px);
+    margin-bottom: 31px;
     max-width: 35%;
     height: auto;
   }
@@ -67,7 +68,8 @@ export default {
     color: rgba(255,255,255, 0.7);
     font-size: 32px;
     text-align: center;
-    font-family: Roboto-Regular, Helvetica;
+    margin-bottom: 35px;
+    font-family: "Roboto", Helvetica;
   }
   .emoticon-wrapper{
     display: flex;
@@ -77,6 +79,7 @@ export default {
  .check-img{
    display: block;
    margin: 0 auto;
+   margin-bottom: 38px;
    margin-top: clamp(40vh, 18%, 287px);
    width: 52px;
    height: 51px;
