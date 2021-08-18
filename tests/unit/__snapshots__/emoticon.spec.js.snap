@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Emoticon renders correctly 1`] = `
+<div
+  class="main"
+>
+  <div
+    class="left-border"
+    style="background-color: rgb(0, 168, 107);"
+  />
+   
+  <div
+    class="container"
+  >
+    <div
+      class="background"
+      style="background-color: rgb(0, 168, 107);"
+    />
+     
+    <img
+      alt="Emoticon"
+      src="positive-vote.svg"
+    />
+  </div>
+</div>
+`;

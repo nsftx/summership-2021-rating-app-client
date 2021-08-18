@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Rating renders correctly 1`] = `
+<div
+  class="rating-wrapper"
+>
+  <div
+    style="display: none;"
+  >
+    <img
+      alt="thumbs-up"
+      class="like-img"
+      src="../assets/positive-vote.svg"
+    />
+     
+    <p>
+      Rate our service!
+    </p>
+     
+    <div
+      class="emoticon-wrapper"
+    />
+  </div>
+   
+  <div
+    style=""
+  >
+    <img
+      alt="checkmark"
+      class="check-img"
+      src="../assets/check.svg"
+    />
+     
+    <p>
+      Thank you for your rating.
+    </p>
+  </div>
+</div>
+`;

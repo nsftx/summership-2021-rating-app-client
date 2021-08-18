@@ -10,8 +10,8 @@ describe('Emoticon', () => {
       }
     }
   })
-  test('Component exist', () => {
-    expect(wrapper.isVueInstance()).toBe(true)
+  it('renders correctly', () => {
+    expect(wrapper.element).toMatchSnapshot()
   })
   it('should have vote method', function () {
     expect(typeof wrapper.vm.vote).toBe('function')

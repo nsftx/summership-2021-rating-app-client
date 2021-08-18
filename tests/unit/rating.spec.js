@@ -14,8 +14,8 @@ describe('Rating', () => {
   wrapper.setData({
     voted: false
   })
-  it('is vue instance', () => {
-    expect(wrapper.isVueInstance()).toBe(true)
+  it('renders correctly', () => {
+    expect(wrapper.element).toMatchSnapshot()
   })
   it('should have changeVoted method', function () {
     expect(typeof wrapper.vm.changeVoted).toBe('function')
